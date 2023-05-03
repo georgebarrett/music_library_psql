@@ -43,4 +43,15 @@ describe Application do
     end
   end
 
+  context 'GET /artists' do
+    it 'should return a list of all the artists' do
+      response = get('/artists')
+
+      expected_response = 'Pixies, ABBA, Taylor Swift, Nina Simone'
+      
+      expect(response.status).to eq (200)
+      expect(response.body).to eq (expected_response)
+    end
+  end
+
 end
