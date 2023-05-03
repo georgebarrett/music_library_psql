@@ -54,4 +54,16 @@ describe Application do
     end
   end
 
+  context 'POST /artists' do
+    it 'creates a new artist' do
+      response = post('./artists', name: 'Wild Nothing', genre: 'Indie')
+
+      expect(response.status).to eq (200)
+      expect(response.body).to eq ('')
+
+      response = get('/artists')
+      expect(response.body).to include('Wild Nothing')
+    end
+  end
+
 end
