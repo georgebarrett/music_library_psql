@@ -25,6 +25,14 @@ class Application < Sinatra::Base
   #   return response.join(', ')
   # end
 
+  get '/' do
+    return erb(:index)
+  end
+
+  get '/about' do
+    return erb(:about)
+  end
+  
   get '/albums' do
     repo = AlbumRepository.new
     
