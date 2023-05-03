@@ -5,6 +5,7 @@ GET /albums
 response (200 ok)
 a list of albums
 
+blah
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
