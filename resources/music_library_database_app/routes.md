@@ -1,3 +1,9 @@
+1.
+request:
+GET /albums
+
+response (200 ok)
+a list of albums
 
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
