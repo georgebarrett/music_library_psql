@@ -120,7 +120,8 @@ describe Application do
       response = post(
         '/albums/created',
         title: 'Surfer Rosa',
-        release_year: '1988'
+        release_year: '1988',
+        artist_id: 2
       )
   
       expect(response.status).to eq(200)

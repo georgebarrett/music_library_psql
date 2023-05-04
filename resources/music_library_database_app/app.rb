@@ -88,12 +88,14 @@ class Application < Sinatra::Base
     # Get request body parameters
     title = params[:title]
     release_year = params[:release_year]
+    artist_id = params[:artist_id]
   
     # Do something useful, like creating a post
     # in a database.
     new_album = Album.new
     new_album.title = title
     new_album.release_year = release_year
+    new_album.artist_id = artist_id
     AlbumRepository.new.create(new_album)
   
     # Return a view to confirm
@@ -105,10 +107,10 @@ class Application < Sinatra::Base
   
   def invalid_request_parameters?
     # Are the params nil?
-    return true if params[:title] == nil || params[:release_year] == nil
+    return true if params[:title] == nil || params[:release_year] == nil || params[:artist_id] == nil
   
     # Are they empty strings?
-    return true if params[:title] == "" || params[:release_year] == ""
+    return true if params[:title] == "" || params[:release_year] == "" || params[:artist_id] == ""
   
     return false
   end
@@ -137,7 +139,5 @@ class Application < Sinatra::Base
 
     return erb(:artists_id)
   end
-
-  
 
 end
