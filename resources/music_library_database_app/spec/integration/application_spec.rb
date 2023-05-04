@@ -44,13 +44,15 @@ describe Application do
   end
 
   context 'GET /artists' do
-    it 'should return a list of all the artists' do
+    it "outputs a list of all artists HTML formatted" do
       response = get('/artists')
 
-      expected_response = 'Pixies, ABBA, Taylor Swift, Nina Simone'
-      
-      expect(response.status).to eq (200)
-      expect(response.body).to eq (expected_response)
+      expect(response.status).to eq 200
+      expect(response.body).to include('<h1>Artists</h1>')
+      expect(response.body).to include("<a href='/artists/1'>Pixies</a>")
+      expect(response.body).to include('Genre: Rock')
+      expect(response.body).to include("<a href='/artists/2'>ABBA</a>")
+      expect(response.body).to include('Genre: Pop')
     end
   end
 
@@ -73,6 +75,15 @@ describe Application do
       expect(response.body).to include ('<h1>Doolittle</h1>')
       expect(response.body).to include ('Release year: 1989')
       expect(response.body).to include ('Artist: Pixies')      
+    end
+  end
+
+  xcontext 'GET /artists/:id' do
+    it 'returns the data for a single artist' do
+      response = get('/artists/1')
+      expect(response.status).to eq (200)
+      expect(response.body).to include ('<h1>Pixies</h1>')
+      expect(response.body).to include ('Genre: Rock')
     end
   end
 
