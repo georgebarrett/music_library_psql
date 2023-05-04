@@ -78,6 +78,42 @@ class Application < Sinatra::Base
     return erb(:new_album)
   end
 
+  post '/albums/created' do
+
+    if invalid_request_parameters?
+      status 400
+      break
+    end
+    
+    # Get request body parameters
+    title = params[:title]
+    release_year = params[:release_year]
+  
+    # Do something useful, like creating a post
+    # in a database.
+    new_album = Album.new
+    new_album.title = title
+    new_album.release_year = release_year
+    AlbumRepository.new.create(new_album)
+  
+    # Return a view to confirm
+    # the form submission or resource creation
+    # to the user.
+    return erb(:albums_created)
+  end
+
+  
+  def invalid_request_parameters?
+    # Are the params nil?
+    return true if params[:title] == nil || params[:release_year] == nil
+  
+    # Are they empty strings?
+    return true if params[:title] == "" || params[:release_year] == ""
+  
+    return false
+  end
+
+
   get '/albums/:id' do
     album_repo = AlbumRepository.new
     album = album_repo.find(params[:id])

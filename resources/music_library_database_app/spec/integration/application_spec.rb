@@ -116,22 +116,24 @@ describe Application do
     end
   end
   
-  xcontext "POST /posts" do
+  context "POST /albums/created" do
     it 'returns a success page' do
       # We're now sending a POST request,
       # simulating the behaviour that the HTML form would have.
       response = post(
-        '/posts',
-        title: 'Welcome',
-        content: 'I am a post'
+        '/albums/created',
+        title: 'Surfer Rosa',
+        release_year: '1988'
       )
   
       expect(response.status).to eq(200)
-      expect(response.body).to include('<p>Your post has been added!</p>')
+      expect(response.body).to include('<h1>Album successfully created</h1>')
     end
   
-    xit 'responds with 400 status if parameters are invalid' do
-      # ...
+    it 'responds with 400 status if parameters are invalid' do
+      response = post('/albums/created')
+
+      expect(response.status).to eq (400)
     end
   end
 
