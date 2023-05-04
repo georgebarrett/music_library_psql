@@ -105,10 +105,7 @@ describe Application do
       response = get('/albums/new')
   
       expect(response.status).to eq(200)
-      expect(response.body).to include('<form action="/albums" method="POST">')
-  
-      # Assert we have the correct form tag with the action and method.
-      expect(response.body).to include('<form action="/albums" method="POST">')
+      expect(response.body).to include('<form action="/albums/created" method="POST">')
       
   
       # We can assert more things, like having
