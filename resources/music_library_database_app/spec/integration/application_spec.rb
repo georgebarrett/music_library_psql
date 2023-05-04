@@ -78,7 +78,7 @@ describe Application do
     end
   end
 
-  xcontext 'GET /artists/:id' do
+  context 'GET /artists/:id' do
     it 'returns the data for a single artist' do
       response = get('/artists/1')
       expect(response.status).to eq (200)
