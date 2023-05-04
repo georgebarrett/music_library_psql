@@ -100,4 +100,39 @@ describe Application do
     end
   end
 
+  context "GET /albums/new" do
+    it 'returns the form page' do
+      response = get('/albums/new')
+  
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<form action="/albums" method="POST">')
+  
+      # Assert we have the correct form tag with the action and method.
+      expect(response.body).to include('<form action="/albums" method="POST">')
+      
+  
+      # We can assert more things, like having
+      # the right HTML form inputs, etc.
+    end
+  end
+  
+  xcontext "POST /posts" do
+    it 'returns a success page' do
+      # We're now sending a POST request,
+      # simulating the behaviour that the HTML form would have.
+      response = post(
+        '/posts',
+        title: 'Welcome',
+        content: 'I am a post'
+      )
+  
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<p>Your post has been added!</p>')
+    end
+  
+    xit 'responds with 400 status if parameters are invalid' do
+      # ...
+    end
+  end
+
 end
