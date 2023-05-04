@@ -72,6 +72,11 @@ class Application < Sinatra::Base
     return ''
   end
 
+  get "/artists/new" do
+
+    return erb(:new_artist)
+  end
+
   get '/albums/new' do
     # This route doesn't do much,
     # it returns the view with the HTML form.
@@ -139,5 +144,7 @@ class Application < Sinatra::Base
 
     return erb(:artists_id)
   end
+
+  
 
 end
