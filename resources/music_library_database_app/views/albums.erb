@@ -3,12 +3,10 @@
     <title>Albums</title>
   </head>
   <body>
-    <h1>Albums</h1>
+    <h1>Albums</h1> 
     <% @albums.each do |album| %>
-      <div>
-        Title: <%= album.title %>
-        Released: <%= album.release_year %>
-      </div>
+      <a href='/albums/<%= album.id %>'><%= album.title %></a>
+      <p>Released: <%= album.release_year %></p>
     <% end %>
   </body>
 </html>
