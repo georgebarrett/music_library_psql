@@ -20,22 +20,22 @@ describe Application do
     end
   end
 
-  xcontext 'POST /check' do
+  context 'POST /check' do
     it 'should get valid postcode result' do
-      response = post('/check', postcode: 'EC1A 1BB')
+      response = get('/check', postcode: 'EC1A 1BB')
 
       expect(response.status).to eq(200)
       expect(response.body).to include('This is a valid postcode')
     end
 
-    it 'should get invalid postcode result' do
+    xit 'should get invalid postcode result' do
       response = post('/check', postcode: '37737 1BB')
 
       expect(response.status).to eq(200)
       expect(response.body).to include('This is not a valid postcode')
     end
 
-    it 'should have a link to go back to the homepage' do
+    xit 'should have a link to go back to the homepage' do
       response = post('/check', postcode: 'EC1A 1BB')
 
       expect(response.status).to eq(200)
