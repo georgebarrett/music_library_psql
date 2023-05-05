@@ -35,8 +35,8 @@ describe Application do
       expect(response.body).to include('This is not a valid postcode')
     end
 
-    xit 'should have a link to go back to the homepage' do
-      response = post('/check', postcode: 'EC1A 1BB')
+    it 'should have a link to go back to the homepage' do
+      response = get('/check', postcode: 'EC1A 1BB')
 
       expect(response.status).to eq(200)
       expect(response.body).to include('<a href="/">Back to the homepage</a>')
