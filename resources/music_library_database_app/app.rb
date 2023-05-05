@@ -72,14 +72,9 @@ class Application < Sinatra::Base
     return ''
   end
 
-  get "/artists/new" do
-
-    return erb(:new_artist)
-  end
+  
 
   get '/albums/new' do
-    # This route doesn't do much,
-    # it returns the view with the HTML form.
     return erb(:new_album)
   end
 
@@ -89,14 +84,11 @@ class Application < Sinatra::Base
       status 400
       break
     end
-    
-    # Get request body parameters
+  
     title = params[:title]
     release_year = params[:release_year]
     artist_id = params[:artist_id]
   
-    # Do something useful, like creating a post
-    # in a database.
     new_album = Album.new
     new_album.title = title
     new_album.release_year = release_year
@@ -120,7 +112,16 @@ class Application < Sinatra::Base
     return false
   end
 
+  get "/artists/new" do
+    return erb(:new_artist)
+  end
+  
   post '/artists/created' do
+
+    if invalid_request_parameters
+      status 400
+      break
+    end
 
     # Get request body parameters
     name = params[:name]
@@ -139,6 +140,13 @@ class Application < Sinatra::Base
     return erb(:artist_created)
   end
 
+  def invalid_request_parameters
+    return true if params[:name] == nil || params[:genre] == nil
+
+    return true if params[:name] == "" || params[:genre] == ""
+
+    return false
+  end
 
   get '/albums/:id' do
     album_repo = AlbumRepository.new
@@ -163,7 +171,5 @@ class Application < Sinatra::Base
 
     return erb(:artists_id)
   end
-
-  
 
 end
