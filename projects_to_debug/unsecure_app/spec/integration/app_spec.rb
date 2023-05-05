@@ -27,5 +27,21 @@ describe Application do
       expect(response.status).to eq(200)
       expect(response.body).to include('Hi Aurora!')
     end
+
+    it 'returns status 400 if there is a less-than symbol' do
+      response = post('/hello', name: '<')
+
+      expect(response.status).to eq (400)
+    end
+
+    it 'returns status 400 if script is injected' do
+      response = post('/hello', name: '>')
+      response_2 = post('/hello', name: '<')
+      response_3 = post('/hello', name: '"')
+      response_4 = post('/hello', name: "'")
+      response_5 = post('/hello', name: "&")
+
+      expect(response.status).to eq (400)
+    end
   end
 end
