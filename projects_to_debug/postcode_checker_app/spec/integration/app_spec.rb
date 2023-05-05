@@ -28,8 +28,8 @@ describe Application do
       expect(response.body).to include('This is a valid postcode')
     end
 
-    xit 'should get invalid postcode result' do
-      response = post('/check', postcode: '37737 1BB')
+    it 'should get invalid postcode result' do
+      response = get('/check', postcode: '37737 1BB')
 
       expect(response.status).to eq(200)
       expect(response.body).to include('This is not a valid postcode')
