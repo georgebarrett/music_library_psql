@@ -16,7 +16,7 @@ describe Application do
         response = get('/')
 
         expect(response.status).to eq(200)
-        expect(response.body).to include('<form method="post" action="/posts">')
+        expect(response.body).to include('<form method="posts" action="/posts">')
         expect(response.body).to include('<input type="text" name="title" />')
         expect(response.body).to include('<input type="text" name="content" />')
         expect(response.body).to include('<input type="text" name="tags" />')
