@@ -23,7 +23,7 @@ describe Application do
       end
     end
 
-    xcontext 'POST /' do
+    context 'POST /' do
       it 'should add the new post' do
         _response = post(
           '/posts',
@@ -34,7 +34,7 @@ describe Application do
 
         response = get('/')
 
-        expect(response.body).to include('<h3>A new post</h3>')
+        expect(response.body).to include('<h3>Add a new post</h3>')
       end
     end
   end
