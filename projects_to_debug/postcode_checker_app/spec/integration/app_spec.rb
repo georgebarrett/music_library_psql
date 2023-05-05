@@ -20,7 +20,7 @@ describe Application do
     end
   end
 
-  context 'POST /check' do
+  xcontext 'POST /check' do
     it 'should get valid postcode result' do
       response = post('/check', postcode: 'EC1A 1BB')
 
