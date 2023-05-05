@@ -120,6 +120,25 @@ class Application < Sinatra::Base
     return false
   end
 
+  post '/artists/created' do
+
+    # Get request body parameters
+    name = params[:name]
+    genre = params[:genre]
+  
+    # Do something useful, like creating a post
+    # in a database.
+    new_artist = Artist.new
+    new_artist.name = name
+    new_artist.genre = genre
+    ArtistRepository.new.create(new_artist)
+  
+    # Return a view to confirm
+    # the form submission or resource creation
+    # to the user.
+    return erb(:artist_created)
+  end
+
 
   get '/albums/:id' do
     album_repo = AlbumRepository.new
