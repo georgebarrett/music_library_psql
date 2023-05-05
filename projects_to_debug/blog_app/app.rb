@@ -15,7 +15,7 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    posts = @post_manager.all_posts
+    @posts = @post_manager.all_posts
 
     return erb(:index)
   end

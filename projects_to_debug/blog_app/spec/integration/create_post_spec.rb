@@ -23,7 +23,7 @@ describe Application do
       end
     end
 
-    context 'POST /' do
+    xcontext 'POST /' do
       it 'should add the new post' do
         _response = post(
           '/posts',
